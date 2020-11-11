@@ -2,7 +2,7 @@
 
 This is an ASP Net Core REST Api created for Pevaar challenge
 # You can try it online!
-Start by our [Swagger Documentation](http://juan-api-products.azurewebsites.net/swagger/index.html) 
+Start by the [Swagger Documentation](http://juan-api-products.azurewebsites.net/swagger/index.html) 
 # Or Install it locally!
 
   - Clone the repo

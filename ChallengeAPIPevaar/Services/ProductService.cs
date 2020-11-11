@@ -36,7 +36,10 @@ namespace ChallengeAPIPevaar.Services
 
         public bool Insert(ProductEntryModel model)
         {
-            return true;
+            var ent = _masterContext.Products.Add(model.FromEntry());
+
+
+            return _masterContext.SaveChanges() != 0;
         }
 
         public IEnumerable<ProductDetailModel> Search(string q)
@@ -53,9 +56,22 @@ namespace ChallengeAPIPevaar.Services
             if (original == null) return false;
 
             original.Description = product.Description;
-            original.IsActive = product.IsActive;
+            original.IsActive = product.IsActive.GetValueOrDefault();
             original.Type = (int)product.Type;
-            original.Value = product.Value;
+            original.Value = product.Value.GetValueOrDefault();
+
+            _masterContext.Products.Update(original);
+
+            return _masterContext.SaveChanges() != 0;
+        }
+
+        public bool Delete(Guid id)
+        {
+            var target = _masterContext.Products.FirstOrDefault(x => x.Id == id);
+            if (target == null)
+                return false;
+
+            _masterContext.Products.Remove(target);
 
             return _masterContext.SaveChanges() != 0;
         }

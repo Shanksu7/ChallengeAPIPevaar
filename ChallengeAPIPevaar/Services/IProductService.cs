@@ -34,6 +34,13 @@ namespace ChallengeAPIPevaar.Services
         /// <param name="model"></param>
         /// <returns></returns>
         public bool Insert(ProductEntryModel model);
+        
+        /// <summary>
+        /// Delete a product based on Guid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool Delete(Guid id);
 
 
     }

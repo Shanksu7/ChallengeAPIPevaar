@@ -15,5 +15,16 @@ namespace ChallengeAPIPevaar.Extensions
                 Type = product.TypeNavigation.Name.ToString()
             };
         }
+
+        public static Product FromEntry(this ProductEntryModel detail)
+        {
+            return new Product()
+            {
+                Description = detail.Description,
+                IsActive = detail.IsActive.GetValueOrDefault(),
+                Type = (int)detail.Type,
+                Value = detail.Value.GetValueOrDefault()
+            };
+        }
     }
 }

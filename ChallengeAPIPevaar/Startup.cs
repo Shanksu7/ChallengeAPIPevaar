@@ -23,6 +23,7 @@ namespace ChallengeAPIPevaar
             services.AddControllers();
             services.AddDbContext<MasterContext>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +33,13 @@ namespace ChallengeAPIPevaar
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Challenge");
+            });
 
             app.UseHttpsRedirection();
 

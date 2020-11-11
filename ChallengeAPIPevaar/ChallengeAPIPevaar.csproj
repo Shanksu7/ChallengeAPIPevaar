@@ -5,13 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="config.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>

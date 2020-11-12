@@ -34,7 +34,7 @@ namespace ChallengeAPIPevaar.Controllers
             return _productService.Get(id);
         }
 
-        //GET /products/search?q
+        //GET products/search?q
         [HttpGet]
         [Route("search")]
         public IEnumerable<ProductDetailModel> Search([FromQuery] string q)
@@ -44,9 +44,10 @@ namespace ChallengeAPIPevaar.Controllers
             return result;
         }
 
-        //PUT /products
+        //PUT products/d869fdb7-740b-4be2-bd8f-0631beab8de2
         [HttpPut]
-        public IActionResult Update([FromQuery] Guid id,
+        [Route("{id}")]
+        public IActionResult Update(Guid id,
                                     [FromBody] ProductEntryModel product)
         {
             var result = _productService.Update(id, product);
@@ -57,21 +58,21 @@ namespace ChallengeAPIPevaar.Controllers
                 return BadRequest();
         }
 
-        //POST /products
+        //POST products
         [HttpPost]
         public IActionResult Post(ProductEntryModel model)
         {
-            if(_productService.Insert(model))
-                return Ok();    
+            if (_productService.Insert(model))
+                return Ok();
 
             return BadRequest(ModelState);
         }
 
-        //DELETE /products
+        //DELETE products
         [HttpDelete]
         public IActionResult Delete([FromForm] Guid id)
         {
-            if(_productService.Delete(id))
+            if (_productService.Delete(id))
                 return Ok();
 
             return BadRequest(ModelState);

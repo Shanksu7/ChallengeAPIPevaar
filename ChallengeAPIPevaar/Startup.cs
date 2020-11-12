@@ -1,7 +1,9 @@
 using ChallengeAPIPevaar.Services;
+using ChallengeDataObjects;
 using ChallengeDataObjects.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,8 +22,9 @@ namespace ChallengeAPIPevaar
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var config = new Configuration();
             services.AddControllers();
-            services.AddDbContext<MasterContext>();
+            services.AddDbContext<MasterContext>(p => p.UseSqlServer(config.ConnectionString));
             services.AddScoped<IProductService, ProductService>();
             services.AddSwaggerGen();
         }

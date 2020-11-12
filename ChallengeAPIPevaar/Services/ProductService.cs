@@ -2,7 +2,6 @@
 using ChallengeAPIPevaar.Models;
 using ChallengeDataObjects.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +11,10 @@ namespace ChallengeAPIPevaar.Services
     public class ProductService : IProductService
     {
         private readonly MasterContext _masterContext;
-        private readonly ILogger<IProductService> _logger;
 
-        public ProductService(MasterContext masterContext,
-                              ILogger<IProductService> logger)
+        public ProductService(MasterContext masterContext)
         {
             _masterContext = masterContext;
-            _logger = logger;
         }
 
         public IEnumerable<ProductDetailModel> Get(Guid? id)
@@ -36,8 +32,7 @@ namespace ChallengeAPIPevaar.Services
 
         public bool Insert(ProductEntryModel model)
         {
-            var ent = _masterContext.Products.Add(model.FromEntry());
-
+            _masterContext.Products.Add(model.FromEntry());
 
             return _masterContext.SaveChanges() != 0;
         }

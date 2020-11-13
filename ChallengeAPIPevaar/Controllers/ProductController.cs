@@ -17,11 +17,8 @@ namespace ChallengeAPIPevaar.Controllers
         private readonly IProductService _productService;
 
         public ProductController(ILogger<ProductController> logger,
-                                 IProductService productService)
-        {
-            _logger = logger;
-            _productService = productService;
-        }
+                                 IProductService productService) => 
+            (_logger, _productService) = (logger, productService);
 
         /// <summary>
         /// GET: /product or /product?id=
@@ -51,31 +48,21 @@ namespace ChallengeAPIPevaar.Controllers
                                     [FromBody] ProductUpdateModel product)
         {
             var result = _productService.Update(id, product);
-
-            if (result)
-                return Ok();
-            else
-                return BadRequest();
+            return result ? Ok() : (IActionResult)BadRequest();
         }
 
         //POST products
         [HttpPost]
         public IActionResult Post(ProductEntryModel model)
         {
-            if (_productService.Insert(model))
-                return Ok();
-
-            return BadRequest(ModelState);
+            return _productService.Insert(model) ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
         //DELETE products
         [HttpDelete]
         public IActionResult Delete([FromForm] Guid id)
         {
-            if (_productService.Delete(id))
-                return Ok();
-
-            return BadRequest(ModelState);
+            return _productService.Delete(id) ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
     }

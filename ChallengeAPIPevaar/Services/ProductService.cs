@@ -12,10 +12,8 @@ namespace ChallengeAPIPevaar.Services
     {
         private readonly MasterContext _masterContext;
 
-        public ProductService(MasterContext masterContext)
-        {
-            _masterContext = masterContext;
-        }
+        public ProductService(MasterContext masterContext) =>
+            (_masterContext) = (masterContext);
 
         public IEnumerable<ProductDetailModel> Get(Guid? id)
         {
@@ -34,7 +32,7 @@ namespace ChallengeAPIPevaar.Services
         {
             _masterContext.Products.Add(model.FromEntry());
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
 
         public IEnumerable<ProductDetailModel> Search(string q)
@@ -48,7 +46,7 @@ namespace ChallengeAPIPevaar.Services
         public bool Update(Guid id, ProductUpdateModel product)
         {
             var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
-            if (original == null) return false;
+            if (original is null) return false;
 
             original.Description = product.Description != null ? product.Description : original.Description;
             original.IsActive = product.IsActive.HasValue ? product.IsActive.Value : original.IsActive;
@@ -57,18 +55,18 @@ namespace ChallengeAPIPevaar.Services
 
             _masterContext.Products.Update(original);
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
 
         public bool Delete(Guid id)
         {
             var target = _masterContext.Products.FirstOrDefault(x => x.Id == id);
-            if (target == null)
+            if (target is null)
                 return false;
 
             _masterContext.Products.Remove(target);
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
     }
 }

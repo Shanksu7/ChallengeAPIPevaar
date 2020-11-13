@@ -26,7 +26,7 @@ namespace ChallengeAPIPevaar.Services
         /// <param name="id"></param>
         /// <param name="product"></param>
         /// <returns></returns>
-        public bool Update(Guid id, ProductEntryModel product);
+        public bool Update(Guid id, ProductUpdateModel product);
 
         /// <summary>
         /// Insert a new product

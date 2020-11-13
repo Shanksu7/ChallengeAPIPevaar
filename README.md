@@ -1,6 +1,13 @@
 # API Challenge Products
 
-This is an ASP Net Core REST Api created for Pevaar challenge
+This is an ASP **[NET 5](https://devblogs.microsoft.com/dotnet/announcing-net-5-0/)** REST Api version created for Pevaar challenge
+
+# .NET 5 Requirements
+
+- Visual studio 2019 version 16.8.x _(update from VS installer)_
+- [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+
+**Note**: in case you work in projects with **.NET Core 2.2 SDK** you will get some errors while building because this SDK version is not longer supported, [Solution here](https://developercommunity.visualstudio.com/content/problem/1251808/build-is-failing-for-microsoftnetsdkrazor-project.html?inRegister=true) 
 # You can try it online!
 Start by the [Swagger Documentation](http://juan-api-products.azurewebsites.net/swagger/index.html) 
 # Or Install it locally!

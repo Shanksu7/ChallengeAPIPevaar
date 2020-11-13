@@ -48,7 +48,7 @@ namespace ChallengeAPIPevaar.Controllers
         [HttpPut]
         [Route("{id}")]
         public IActionResult Update(Guid id,
-                                    [FromBody] ProductEntryModel product)
+                                    [FromBody] ProductUpdateModel product)
         {
             var result = _productService.Update(id, product);
 

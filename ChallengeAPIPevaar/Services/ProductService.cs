@@ -45,15 +45,15 @@ namespace ChallengeAPIPevaar.Services
             return result.Select(x => x.GetDetails());
         }
 
-        public bool Update(Guid id, ProductEntryModel product)
+        public bool Update(Guid id, ProductUpdateModel product)
         {
             var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
             if (original == null) return false;
 
-            original.Description = product.Description;
-            original.IsActive = product.IsActive.GetValueOrDefault();
-            original.Type = (int)product.Type;
-            original.Value = product.Value.GetValueOrDefault();
+            original.Description = product.Description != null ? product.Description : original.Description;
+            original.IsActive = product.IsActive.HasValue ? product.IsActive.Value : original.IsActive;
+            original.Type = product.Type.HasValue ? (int)product.Type.Value : original.Type;
+            original.Value = product.Value.HasValue ? product.Value.Value : original.Value;
 
             _masterContext.Products.Update(original);
 

@@ -9,7 +9,7 @@ This is an ASP **[NET 5](https://devblogs.microsoft.com/dotnet/announcing-net-5-
 
 **Note**: in case you work in projects with **.NET Core 2.2 SDK** you will get some errors while building because this SDK version is not longer supported, [Solution here](https://developercommunity.visualstudio.com/content/problem/1251808/build-is-failing-for-microsoftnetsdkrazor-project.html?inRegister=true) 
 # You can try it online!
-Start by the [Swagger Documentation](http://juan-api-products.azurewebsites.net/swagger/index.html) 
+Start by the [Swagger Documentation](http://juan-api-products.azurewebsites.net/swagger/index.html) (**.NET 5 version**)
 # Or Install it locally!
 
   - Clone the repo
@@ -22,3 +22,7 @@ Run:
 ```sh
 $ dotnet run
 ```
+
+# .NET 5
+
+.NET 5 was released on November 10th 2020, you can look at  [ .NET 5 branch](https://github.com/Shanks97/ChallengeAPIPevaar/tree/Upgrade_NET_5) version of this repository 

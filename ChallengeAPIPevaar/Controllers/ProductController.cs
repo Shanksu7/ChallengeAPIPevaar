@@ -21,7 +21,7 @@ namespace ChallengeAPIPevaar.Controllers
             (_logger, _productService) = (logger, productService);
 
         /// <summary>
-        /// GET: /product or /product?id=
+        /// Get all Products or specify by Id
         /// </summary>
         /// <param name="id">Id optional</param>
         /// <returns></returns>
@@ -31,6 +31,11 @@ namespace ChallengeAPIPevaar.Controllers
             return _productService.Get(id);
         }
 
+        /// <summary>
+        /// Query products by description
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         //GET products/search?q
         [HttpGet]
         [Route("search")]
@@ -41,6 +46,12 @@ namespace ChallengeAPIPevaar.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Update product by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         //PUT products/d869fdb7-740b-4be2-bd8f-0631beab8de2
         [HttpPut]
         [Route("{id}")]
@@ -51,6 +62,11 @@ namespace ChallengeAPIPevaar.Controllers
             return result ? Ok() : (IActionResult)BadRequest();
         }
 
+        /// <summary>
+        /// Insert products into the database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         //POST products
         [HttpPost]
         public IActionResult Post(ProductEntryModel model)
@@ -58,6 +74,11 @@ namespace ChallengeAPIPevaar.Controllers
             return _productService.Insert(model) ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
+        /// <summary>
+        /// Delete products by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //DELETE products
         [HttpDelete]
         public IActionResult Delete([FromForm] Guid id)

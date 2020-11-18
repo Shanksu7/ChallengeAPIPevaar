@@ -2,9 +2,16 @@
 
   <PropertyGroup>
 	  <TargetFramework>net5.0</TargetFramework>
+	  <UserSecretsId>55a89abe-be2b-4c0e-a100-d87f76d9f7b5</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\PSF 20\source\repos\ChallengeAPIPevaar\ChallengeAPIPevaar\ChallengeAPIPevaar.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 

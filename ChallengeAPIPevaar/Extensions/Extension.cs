@@ -10,7 +10,7 @@ namespace ChallengeAPIPevaar.Extensions
             return new()
             {
                 Description = product.Description,
-                ID = product.Id,
+                Id = product.Id,
                 IsActive = product.IsActive,
                 Type = product.TypeNavigation.Name.ToString()
             };

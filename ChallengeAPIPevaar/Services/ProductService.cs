@@ -1,4 +1,5 @@
-﻿using ChallengeAPIPevaar.Extensions;
+﻿using AutoMapper;
+using ChallengeAPIPevaar.Extensions;
 using ChallengeAPIPevaar.Models;
 using ChallengeDataObjects.Context;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,10 @@ namespace ChallengeAPIPevaar.Services
     public class ProductService : IProductService
     {
         private readonly MasterContext _masterContext;
+        private readonly IMapper _mapper;
 
-        public ProductService(MasterContext masterContext)
-        {
-            _masterContext = masterContext;
-        }
+        public ProductService(MasterContext masterContext, IMapper mapper) =>
+            (_masterContext, _mapper) = (masterContext, mapper);
 
         public IEnumerable<ProductDetailModel> Get(Guid? id)
         {
@@ -24,17 +24,18 @@ namespace ChallengeAPIPevaar.Services
                         .Products.Include(x => x.TypeNavigation)
                         .AsNoTracking()
                         .Where(x => x.Id == id.Value)
-                        .Select(x => x.GetDetails());
+                        .Select(x => _mapper.Map<ProductDetailModel>(x));
 
             return _masterContext.Products.Include(x => x.TypeNavigation).AsNoTracking()
-                                 .Select(x => x.GetDetails());
+                                 .Select(x => _mapper.Map<ProductDetailModel>(x));
         }
 
         public bool Insert(ProductEntryModel model)
         {
-            _masterContext.Products.Add(model.FromEntry());
+            var insert = _mapper.Map<Product>(model);
+            _masterContext.Products.Add(insert);
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
 
         public IEnumerable<ProductDetailModel> Search(string q)
@@ -42,13 +43,13 @@ namespace ChallengeAPIPevaar.Services
             var result = _masterContext.Products.Include(x => x.TypeNavigation).AsNoTracking()
                                        .Where(x => x.Description.ToLower().Contains(q.ToLower()));
 
-            return result.Select(x => x.GetDetails());
+            return result.Select(x => _mapper.Map<ProductDetailModel>(x));
         }
 
         public bool Update(Guid id, ProductUpdateModel product)
         {
             var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
-            if (original == null) return false;
+            if (original is null) return false;
 
             original.Description = product.Description != null ? product.Description : original.Description;
             original.IsActive = product.IsActive.HasValue ? product.IsActive.Value : original.IsActive;
@@ -57,18 +58,18 @@ namespace ChallengeAPIPevaar.Services
 
             _masterContext.Products.Update(original);
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
 
         public bool Delete(Guid id)
         {
             var target = _masterContext.Products.FirstOrDefault(x => x.Id == id);
-            if (target == null)
+            if (target is null)
                 return false;
 
             _masterContext.Products.Remove(target);
 
-            return _masterContext.SaveChanges() != 0;
+            return _masterContext.SaveChanges() is not 0;
         }
     }
 }

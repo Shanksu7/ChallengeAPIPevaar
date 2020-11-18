@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>net5.0</TargetFramework>
+	  <UserSecretsId>55a89abe-be2b-4c0e-a100-d87f76d9f7b5</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\PSF 20\source\repos\ChallengeAPIPevaar\ChallengeAPIPevaar\ChallengeAPIPevaar.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

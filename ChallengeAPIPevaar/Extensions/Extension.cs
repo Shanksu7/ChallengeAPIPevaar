@@ -7,10 +7,10 @@ namespace ChallengeAPIPevaar.Extensions
     {
         public static ProductDetailModel GetDetails(this Product product)
         {
-            return new ProductDetailModel()
+            return new()
             {
                 Description = product.Description,
-                ID = product.Id,
+                Id = product.Id,
                 IsActive = product.IsActive,
                 Type = product.TypeNavigation.Name.ToString()
             };
@@ -18,7 +18,7 @@ namespace ChallengeAPIPevaar.Extensions
 
         public static Product FromEntry(this ProductEntryModel detail)
         {
-            return new Product()
+            return new()
             {
                 Description = detail.Description,
                 IsActive = detail.IsActive.GetValueOrDefault(),

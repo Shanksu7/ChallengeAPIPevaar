@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChallengeAPIPevaar</name>
+    </assembly>
+    <members>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Get(System.Nullable{System.Guid})">
+            <summary>
+            Get all Products or specify by Id
+            </summary>
+            <param name="id">Id optional</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Search(System.String)">
+            <summary>
+            Query products by description
+            </summary>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Update(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+            <summary>
+            Update product by id
+            </summary>
+            <param name="id"></param>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Post(ChallengeAPIPevaar.ProductEntryModel)">
+            <summary>
+            Insert products into the database
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Delete(System.Guid)">
+            <summary>
+            Delete products by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Get(System.Nullable{System.Guid})">
+            <summary>
+            if 'id' is defined, try to return the product with this id, otherwise will return all products
+            </summary>
+            <param name="id">Product's id</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Search(System.String)">
+            <summary>
+            Look for products that include the value of 'q' in the description
+            </summary>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Update(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+            <summary>
+            Update a product based in the id and the new entry model
+            </summary>
+            <param name="id"></param>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Insert(ChallengeAPIPevaar.ProductEntryModel)">
+            <summary>
+            Insert a new product
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Delete(System.Guid)">
+            <summary>
+            Delete a product based on Guid
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

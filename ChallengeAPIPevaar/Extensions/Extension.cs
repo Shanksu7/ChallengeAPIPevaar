@@ -5,6 +5,7 @@ namespace ChallengeAPIPevaar.Extensions
 {
     public static class Extension
     {
+        public static string Status(this bool result) => result ? "Ok" : "Error";
         public static ProductDetailModel GetDetails(this Product product)
         {
             return new()

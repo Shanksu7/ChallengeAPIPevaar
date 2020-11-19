@@ -1,7 +1,9 @@
-﻿using ChallengeAPIPevaar.Models;
+﻿using ChallengeAPIPevaar.Extensions;
+using ChallengeAPIPevaar.Models;
 using ChallengeAPIPevaar.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,31 +53,26 @@ namespace ChallengeAPIPevaar.Controllers
                                     [FromBody] ProductUpdateModel product)
         {
             var result = _productService.Update(id, product);
-
-            if (result)
-                return Ok();
-            else
-                return BadRequest();
+            _logger.LogInformation($"Update for id: {id} [{result.Status()}]");
+            return result ? Ok() : (IActionResult)BadRequest();
         }
 
         //POST products
         [HttpPost]
         public IActionResult Post(ProductEntryModel model)
         {
-            if (_productService.Insert(model))
-                return Ok();
-
-            return BadRequest(ModelState);
+            var result = _productService.Insert(model);
+            _logger.LogInformation($"Insert product [{result.Status()}]: {JsonConvert.SerializeObject(model)}");
+            return result ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
         //DELETE products
         [HttpDelete]
         public IActionResult Delete([FromForm] Guid id)
         {
-            if (_productService.Delete(id))
-                return Ok();
-
-            return BadRequest(ModelState);
+            var result = _productService.Delete(id);
+            _logger.LogInformation($"Delete product [{result.Status()}] id: {id}");
+            return result ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
     }

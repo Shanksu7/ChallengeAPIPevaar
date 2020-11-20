@@ -21,7 +21,3 @@ Run:
 ```sh
 $ dotnet run
 ```
-
-# .NET 5
-
-.NET 5 was released on November 10th 2020, you can look at  [ .NET 5 branch](https://github.com/Shanks97/ChallengeAPIPevaar/tree/Upgrade_NET_5) version of this repository 

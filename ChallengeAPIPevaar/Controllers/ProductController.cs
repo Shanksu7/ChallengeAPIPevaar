@@ -45,18 +45,46 @@ namespace ChallengeAPIPevaar.Controllers
             _logger.LogInformation($"search: '{q}': {result.Count()}");
             return result;
         }
-
-        //PUT products/d869fdb7-740b-4be2-bd8f-0631beab8de2
+        
+        /// <summary>
+        /// Update a product by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        //PATCH products/d869fdb7-740b-4be2-bd8f-0631beab8de2
         [HttpPut]
         [Route("{id}")]
         public IActionResult Update(Guid id,
-                                    [FromBody] ProductUpdateModel product)
+                                    [FromBody] ProductEntryModel product)
         {
             var result = _productService.Update(id, product);
             _logger.LogInformation($"Update for id: {id} [{result.Status()}]");
             return result ? Ok() : (IActionResult)BadRequest();
         }
 
+        /// <summary>
+        /// Patch a product by id and the given properties
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        //PATCH products/d869fdb7-740b-4be2-bd8f-0631beab8de2
+        [HttpPatch]
+        [Route("{id}")]
+        public IActionResult Patch(Guid id,
+                                    [FromBody] ProductUpdateModel product)
+        {
+            var result = _productService.Patch(id, product);
+            _logger.LogInformation($"Patch for id: {id} [{result.Status()}]");
+            return result ? Ok() : (IActionResult)BadRequest();
+        }
+
+        /// <summary>
+        /// Insert products into the database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         //POST products
         [HttpPost]
         public IActionResult Post(ProductEntryModel model)

@@ -46,17 +46,15 @@ namespace ChallengeAPIPevaar.Services
             return result.Select(x => _mapper.Map<ProductDetailModel>(x));
         }
 
-        public bool Update(Guid id, ProductUpdateModel product)
+        public bool Update(Guid id, ProductEntryModel product)
         {
             var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
             if (original is null) return false;
 
-            original.Description = product.Description != null ? product.Description : original.Description;
-            original.IsActive = product.IsActive.HasValue ? product.IsActive.Value : original.IsActive;
-            original.Type = product.Type.HasValue ? (int)product.Type.Value : original.Type;
-            original.Value = product.Value.HasValue ? product.Value.Value : original.Value;
+            var updatedProduct = product.FromEntry();
+            updatedProduct.Id = original.Id;
 
-            _masterContext.Products.Update(original);
+            _masterContext.Products.Update(updatedProduct);
 
             return _masterContext.SaveChanges() is not 0;
         }
@@ -68,6 +66,21 @@ namespace ChallengeAPIPevaar.Services
                 return false;
 
             _masterContext.Products.Remove(target);
+
+            return _masterContext.SaveChanges() is not 0;
+        }
+
+        public bool Patch(Guid id, ProductUpdateModel product)
+        {
+            var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
+            if (original is null) return false;
+
+            original.Description = product.Description != null ? product.Description : original.Description;
+            original.IsActive = product.IsActive.HasValue ? product.IsActive.Value : original.IsActive;
+            original.Type = product.Type.HasValue ? (int)product.Type.Value : original.Type;
+            original.Value = product.Value.HasValue ? product.Value.Value : original.Value;
+
+            _masterContext.Products.Update(original);
 
             return _masterContext.SaveChanges() is not 0;
         }

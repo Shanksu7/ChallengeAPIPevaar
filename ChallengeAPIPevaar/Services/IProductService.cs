@@ -21,12 +21,20 @@ namespace ChallengeAPIPevaar.Services
         public IEnumerable<ProductDetailModel> Search(string q);
 
         /// <summary>
-        /// Update a product based in the id and the new entry model
+        /// Update a product based in the id and a new entry model
         /// </summary>
         /// <param name="id"></param>
         /// <param name="product"></param>
         /// <returns></returns>
-        public bool Update(Guid id, ProductUpdateModel product);
+        public bool Update(Guid id, ProductEntryModel product);
+
+        /// <summary>
+        /// Patch a product based on given properties
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public bool Patch(Guid id, ProductUpdateModel product);
 
         /// <summary>
         /// Insert a new product

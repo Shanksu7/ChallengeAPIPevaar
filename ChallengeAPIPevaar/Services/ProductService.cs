@@ -81,7 +81,7 @@ namespace ChallengeAPIPevaar.Services
 
             _masterContext.Products.Update(original);
 
-            return _masterContext.SaveChanges() is not 0;
+            return _masterContext.SaveChanges() != 0;
         }
     }
 }

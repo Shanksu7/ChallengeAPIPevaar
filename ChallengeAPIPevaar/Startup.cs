@@ -10,8 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using System.IO;
-using System.Reflection;
 
 namespace ChallengeAPIPevaar
 {
@@ -31,7 +29,15 @@ namespace ChallengeAPIPevaar
             services.AddControllers();
             services.AddDbContext<MasterContext>(p => p.UseSqlServer(config.ConnectionString));
             services.AddScoped<IProductService, ProductService>();
-            services.AddSwaggerGen(c =>
+
+            services.AddSwaggerGen(c => { //<-- NOTE 'Add' instead of 'Configure'
+                c.SwaggerDoc("v3", new OpenApiInfo
+                {
+                    Title = "Juan API Challenge",
+                    Version = "v3"
+                });
+            });
+            /*services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v2", new OpenApiInfo
                 {
@@ -45,10 +51,10 @@ namespace ChallengeAPIPevaar
                     }
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //c.IncludeXmlComments(xmlPath);
+            });*/
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews();
         }
@@ -65,7 +71,7 @@ namespace ChallengeAPIPevaar
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "API Challenge");
+                c.SwaggerEndpoint("/swagger/v3/swagger.json", "Juan API Challenge");
             });
 
             app.UseHttpsRedirection();

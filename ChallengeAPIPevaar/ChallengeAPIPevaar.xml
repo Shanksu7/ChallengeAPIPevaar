@@ -18,9 +18,17 @@
             <param name="q"></param>
             <returns></returns>
         </member>
-        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Update(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Update(System.Guid,ChallengeAPIPevaar.ProductEntryModel)">
             <summary>
-            Update product by id
+            Update a product by ID
+            </summary>
+            <param name="id"></param>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Controllers.ProductController.Patch(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+            <summary>
+            Patch a product by id and the given properties
             </summary>
             <param name="id"></param>
             <param name="product"></param>
@@ -54,9 +62,17 @@
             <param name="q"></param>
             <returns></returns>
         </member>
-        <member name="M:ChallengeAPIPevaar.Services.IProductService.Update(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Update(System.Guid,ChallengeAPIPevaar.ProductEntryModel)">
             <summary>
-            Update a product based in the id and the new entry model
+            Update a product based in the id and a new entry model
+            </summary>
+            <param name="id"></param>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChallengeAPIPevaar.Services.IProductService.Patch(System.Guid,ChallengeAPIPevaar.Models.ProductUpdateModel)">
+            <summary>
+            Patch a product based on given properties
             </summary>
             <param name="id"></param>
             <param name="product"></param>

@@ -51,10 +51,15 @@ namespace ChallengeAPIPevaar.Services
             var original = _masterContext.Products.Include(x => x.TypeNavigation).FirstOrDefault(prd => prd.Id == id);
             if (original is null) return false;
 
-            var updatedProduct = product.FromEntry();
-            updatedProduct.Id = original.Id;
+            //var updatedProduct = product.FromEntry();
+           // updatedProduct.Id = original.Id;
 
-            _masterContext.Products.Update(updatedProduct);
+            original.Description = product.Description;
+            original.Value = (double) product.Value;
+            original.Type = (int) product.Type;
+            original.IsActive = (bool) product.IsActive;
+
+            _masterContext.Products.Update(original);
 
             return _masterContext.SaveChanges() is not 0;
         }

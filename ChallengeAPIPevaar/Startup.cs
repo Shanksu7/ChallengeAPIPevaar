@@ -37,24 +37,6 @@ namespace ChallengeAPIPevaar
                     Version = "v3"
                 });
             });
-            /*services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v2", new OpenApiInfo
-                {
-                    Title = "API Challenge",
-                    Version = "v2",
-                    Description = "API Pevaar Challenge",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Juan (GitHub)",
-                        Url = new Uri("https://github.com/Shanks97"),
-                    }
-                });
-
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
-            });*/
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews();
         }

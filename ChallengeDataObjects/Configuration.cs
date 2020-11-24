@@ -10,7 +10,7 @@ namespace ChallengeDataObjects
         public Configuration()
         {
             var config = new ConfigurationBuilder()
-                            .AddJsonFile("config.json")
+                            .AddJsonFile("config-app.json")
                             .Build();
 
             ConnectionString = config["connectionString"];

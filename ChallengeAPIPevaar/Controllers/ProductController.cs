@@ -62,7 +62,7 @@ namespace ChallengeAPIPevaar.Controllers
         {
             var result = _productService.Update(id, product);
             _logger.LogInformation($"Update for id: {id} [{result.Status()}]");
-            return result ? Ok() : (IActionResult)BadRequest();
+            return result ? Ok() : (IActionResult)BadRequest(ModelState);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 # API Challenge Products
 
-This is an ASP **[NET 5](https://devblogs.microsoft.com/dotnet/announcing-net-5-0/)** REST Api version created for Pevaar challenge
+This is an ASP **[NET 5](https://devblogs.microsoft.com/dotnet/announcing-net-5-0/)** REST Api version created for Pevaar challenge just to demonstrate all learnt skills
 
 # .NET 5 Requirements
 
